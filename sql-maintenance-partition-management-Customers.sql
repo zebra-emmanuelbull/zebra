@@ -1,0 +1,80 @@
+USE [master]
+GO
+
+ALTER DATABASE [Customers] SET SINGLE_USER WITH ROLLBACK IMMEDIATE;
+
+ALTER DATABASE [Customers] ADD FILEGROUP [Customers_07_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_07_2019_Unit1', FILENAME = N'E:\zebra\sqlserver\data\Customers_07_2019_Unit1.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_07_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_07_2019_Unit2', FILENAME = N'H:\zebra\sqlserver\data\Customers_07_2019_Unit2.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_07_2019]
+GO
+ALTER DATABASE [Customers] ADD FILEGROUP [Customers_08_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_08_2019_Unit1', FILENAME = N'E:\zebra\sqlserver\data\Customers_08_2019_Unit1.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_08_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_08_2019_Unit2', FILENAME = N'H:\zebra\sqlserver\data\Customers_08_2019_Unit2.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_08_2019]
+GO
+ALTER DATABASE [Customers] ADD FILEGROUP [Customers_09_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_09_2019_Unit1', FILENAME = N'E:\zebra\sqlserver\data\Customers_09_2019_Unit1.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_09_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_09_2019_Unit2', FILENAME = N'H:\zebra\sqlserver\data\Customers_09_2019_Unit2.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_09_2019]
+GO
+ALTER DATABASE [Customers] ADD FILEGROUP [Customers_10_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_10_2019_Unit1', FILENAME = N'E:\zebra\sqlserver\data\Customers_10_2019_Unit1.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_10_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_10_2019_Unit2', FILENAME = N'H:\zebra\sqlserver\data\Customers_10_2019_Unit2.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_10_2019]
+GO
+
+ALTER DATABASE [Customers] ADD FILEGROUP [Customers_11_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_11_2019_Unit1', FILENAME = N'E:\zebra\sqlserver\data\Customers_11_2019_Unit1.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_11_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_11_2019_Unit2', FILENAME = N'H:\zebra\sqlserver\data\Customers_11_2019_Unit2.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_11_2019]
+GO
+
+ALTER DATABASE [Customers] ADD FILEGROUP [Customers_12_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_12_2019_Unit1', FILENAME = N'E:\zebra\sqlserver\data\Customers_12_2019_Unit1.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_12_2019]
+GO
+ALTER DATABASE [Customers] ADD FILE ( NAME = N'Customers_12_2019_Unit2', FILENAME = N'H:\zebra\sqlserver\data\Customers_12_2019_Unit2.ndf' , SIZE = 1048576KB , FILEGROWTH = 1048576KB ) TO FILEGROUP [Customers_12_2019]
+GO
+
+USE  [Customers]
+ALTER PARTITION SCHEME [ps_Monthly]  
+NEXT USED [Customers_07_2019];
+
+ALTER PARTITION FUNCTION [pf_Monthly]()  SPLIT RANGE (N'2019-07-31T00:00:00.000');
+
+
+ALTER PARTITION SCHEME [ps_Monthly]  
+NEXT USED [Customers_08_2019];
+
+ALTER PARTITION FUNCTION [pf_Monthly]()  SPLIT RANGE (N'2019-08-31T00:00:00.000');
+
+ALTER PARTITION SCHEME [ps_Monthly]  
+NEXT USED [Customers_09_2019];
+
+ALTER PARTITION FUNCTION [pf_Monthly]()  SPLIT RANGE (N'2019-09-30T00:00:00.000');
+
+ALTER PARTITION SCHEME [ps_Monthly]  
+NEXT USED [Customers_10_2019];
+
+ALTER PARTITION FUNCTION [pf_Monthly]()  SPLIT RANGE (N'2019-10-31T00:00:00.000');
+
+ALTER PARTITION SCHEME [ps_Monthly]  
+NEXT USED [Customers_11_2019];
+
+ALTER PARTITION FUNCTION [pf_Monthly]()  SPLIT RANGE (N'2019-11-30T00:00:00.000');
+
+ALTER PARTITION SCHEME [ps_Monthly]  
+NEXT USED [Customers_12_2019];
+
+ALTER PARTITION FUNCTION [pf_Monthly]()  SPLIT RANGE (N'2019-12-31T00:00:00.000');
+
+GO 
+
+
+ALTER DATABASE Customers SET MULTI_USER ;
